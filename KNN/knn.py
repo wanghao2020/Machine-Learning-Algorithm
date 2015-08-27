@@ -8,6 +8,7 @@ __author__ = 'wanghao'
 
 from numpy import *
 import operator
+import os
 
 # create dataset
 
@@ -69,7 +70,7 @@ def classify0(inx, dataset, labels, k):
     return sortedclassCount[0][0]
 
 
-# test the knn, get the result
+# test the knn with datedata , get the result
 
 def classifytest():
 
@@ -88,6 +89,74 @@ def classifytest():
         if (resultlabel != labels[i]):
             errornum += 1.0
     print "the error ratio is %f" %(errornum/float(testnum))
+
+
+# convert one txt file to vector
+def img2vector(filename):
+
+    f = open(filename)
+    returnMatrix = zeros((1,1024))
+    for i in range(32):
+        line = f.readline()
+        for j in range(32):
+            returnMatrix[ 0, 32*i + j] = int(line[j])
+
+    return returnMatrix
+
+# test the hand writing img . get the result
+
+def handWritingClassifyTest():
+
+    hwlabels = []
+    hwTrainfiles = os.listdir('./trainingDigits')
+    hwTrainNum = len(hwTrainfiles)
+    TrainMatrix = zeros((hwTrainNum, 1024))
+
+    for i in range(hwTrainNum):
+        file = hwTrainfiles[i]
+        filename = file.split('.')[0]
+        filelabel = int(filename.split('_')[0])
+        hwlabels.append(filelabel)
+        TrainMatrix[i, :] = img2vector('trainingDigits/%s' %file)
+
+    hwTestfiles = os.listdir('./testDigits')
+    hwTestNum = len(hwTestfiles)
+    errornums = 0.0
+
+    for j in range(hwTestNum):
+        file = hwTestfiles[j]
+        filename = file.split('.')[0]
+        fileTestLabel = int(filename.split('_')[0])
+        TestMat = img2vector('testDigits/%s'%file)
+        resultLabel = classify0(TestMat, TrainMatrix, hwlabels, 3)
+
+        print "the %d the test result is %d, the real label should be %d"\
+              %(j, resultLabel, fileTestLabel)
+
+        if (resultLabel != fileTestLabel):
+            errornums += 1
+
+    errorrate = errornums/float(hwTestNum)
+
+    print "the result is : error num is %d, the error rate is %f "\
+          %(errornums, errorrate)
+
+    return errorrate
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
