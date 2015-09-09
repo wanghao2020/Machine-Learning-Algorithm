@@ -2,13 +2,13 @@ __author__ = 'wanghao'
 
 """
     naive bayes main function
-    three example for naive bayes
     author :  wanghao
     email  :  w786058404@163.com
 """
 
 from numpy import *
 import bayes
+import FilterMail
 
 postingList, classVec = bayes.loadDataSet()
 
@@ -33,3 +33,6 @@ print "the each class , each element probability\n", p1Vec, '\n', p0Vec
 
 print "--------------------------------"
 bayes.testNB()
+
+print "--------------------------------"
+FilterMail.spamTest()

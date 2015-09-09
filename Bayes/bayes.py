@@ -81,7 +81,7 @@ def classifyNB(classifyVec, p1Vec, p0Vec, Pa):
     p1 = sum(classifyVec * p1Vec) + log(Pa)
     p0 = sum(classifyVec * p0Vec) + log(1-Pa)
     if p1 > p0 :
-        return  1
+        return 1
     else:
         return 0
 
