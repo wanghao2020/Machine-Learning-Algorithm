@@ -33,13 +33,13 @@ def createVocablist(dataset):
 
     return list(vocabset)
 
-# set the wordvec by the vocablist
+# use the bag-of-words model
 def setOfwords2Vec(vocablist, inputSet):
 
     returnVec = [0]*len(vocablist)
     for word in inputSet:
         if word in vocablist:
-            returnVec[vocablist.index(word)] = 1
+            returnVec[vocablist.index(word)] += 1
         else:
             print "the word :%s is not in my vocablist" %word
 
@@ -52,13 +52,13 @@ def trainNB0(trainMatrix, trainCategory):
     numWords = len(trainMatrix[0])
 
     # 1 probability
-    Pa = sum(trainCategory) / float(numTrainDocs)\
+    Pa = sum(trainCategory) / float(numTrainDocs)
 
-    #get each element probability
-    p0Num = zeros(numWords)
-    p1Num = zeros(numWords)
-    p0AllNum = 0.0
-    p1AllNum = 0.0
+    #avoid 0
+    p0Num = ones(numWords)
+    p1Num = ones(numWords)
+    p0AllNum = 2.0
+    p1AllNum = 2.0
 
     for i in range(numTrainDocs):
         if trainCategory[i] == 1:
@@ -68,10 +68,47 @@ def trainNB0(trainMatrix, trainCategory):
             p0Num += trainMatrix[i]
             p0AllNum += sum(trainMatrix[i])
 
-    p1Vec = p1Num / p1AllNum  # change log
-    p0Vec = p0Num / p0AllNum
+    # avoid underflow
+    p1Vec = log(p1Num / p1AllNum)  # change log
+    p0Vec = log(p0Num / p0AllNum)
 
     return Pa, p1Vec, p0Vec
+
+
+# classify the bayes
+def classifyNB(classifyVec, p1Vec, p0Vec, Pa):
+    # compute each class probability
+    p1 = sum(classifyVec * p1Vec) + log(Pa)
+    p0 = sum(classifyVec * p0Vec) + log(1-Pa)
+    if p1 > p0 :
+        return  1
+    else:
+        return 0
+
+# test the bayes accuracy:
+def testNB():
+    # load the data
+    listPosts, listClasses = loadDataSet()
+    # get the dictionaries
+    vablist = createVocablist(listPosts)
+    # train the bayes to get the prior probability
+    trainMat = []
+    for each in listPosts:
+        trainMat.append(setOfwords2Vec(vablist, each))
+    Pa, p1Vec, p0Vec = trainNB0(trainMat, listClasses)
+    # test dataset
+    testEntry = ['love', 'my', 'dalmation']
+    firstDoc = setOfwords2Vec(vablist, testEntry)
+    print "the first test class is ", classifyNB(firstDoc,
+                                                 p1Vec, p0Vec, Pa)
+    testEntry = ['stupid', 'garbage']
+    secondDoc = setOfwords2Vec(vablist, testEntry)
+    print  "the second test class is ", classifyNB(secondDoc,
+                                                   p1Vec, p0Vec, Pa)
+
+
+
+
 
 
 
