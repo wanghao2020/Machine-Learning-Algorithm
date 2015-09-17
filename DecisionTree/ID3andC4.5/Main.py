@@ -33,3 +33,9 @@ print "The final the ID3 Tree is ", myTree
 print "---------------------------------------\n"
 
 
+# test for the one example
+print "Labels is ..", Labels
+# !!!Notice:the Labels has been changed
+DataSet, Labels = ID3Tree.createDataSet()
+result = ID3Tree.classifyID3(myTree, Labels, [1, 10])
+print "the classify result is ", result

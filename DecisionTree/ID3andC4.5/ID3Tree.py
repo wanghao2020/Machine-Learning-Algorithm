@@ -118,6 +118,31 @@ def createTree(dataSet, labels):
     return ID3Tree
 
 
+# classify the Vec, get the class
+def classifyID3(inputTree, featLabels, testVec):
+
+    firstStr = inputTree.keys()[0]
+    print "The first str is ", firstStr
+    secondDict = inputTree[firstStr]
+    featureIndex = featLabels.index(firstStr)
+    print "The featureIndex str is ", firstStr
+
+    for key in secondDict.keys():
+        if key == testVec[featureIndex]:
+            if type(secondDict[key]).__name__ == 'dict':
+                return classifyID3(secondDict[key], featLabels, testVec)
+            else:
+                return secondDict[key]
+
+
+
+
+
+
+
+
+
+
 
 
 
