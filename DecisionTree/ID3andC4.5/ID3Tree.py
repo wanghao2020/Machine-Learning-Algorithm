@@ -135,6 +135,40 @@ def classifyID3(inputTree, featLabels, testVec):
                 return secondDict[key]
 
 
+# get the num of the leaf node
+def getNumLeafs(mytree):
+
+    numLeafs = 0
+    firstStr = mytree.keys()[0]
+    secondDict = mytree[firstStr]
+
+    for key in secondDict.keys():
+        if type(secondDict[key]).__name__ == 'dict':
+            numLeafs += getNumLeafs(secondDict[key])
+        else:
+            numLeafs += 1;
+
+    return numLeafs
+
+
+# get the depth of the ID3 tree
+def getTreeDepth(mytree):
+
+    maxDepth = 0
+    firstStr = mytree.keys()[0]
+    secondDict = mytree[firstStr]
+
+    for key in secondDict.keys():
+        if type(secondDict[key]).__name__ == "dict":
+            Depth = getTreeDepth(secondDict[key]) + 1
+        else:
+            Depth = 1
+
+        if Depth > maxDepth:
+            maxDepth = Depth
+
+    return  Depth
+
 
 
 

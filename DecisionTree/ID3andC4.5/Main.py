@@ -6,6 +6,7 @@ __author__ = 'wanghao'
 """
 
 import ID3Tree
+import TreePlot
 
 DataSet, Labels = ID3Tree.createDataSet()
 shannon = ID3Tree.calShannonEnt(DataSet)
@@ -37,5 +38,47 @@ print "---------------------------------------\n"
 print "Labels is ..", Labels
 # !!!Notice:the Labels has been changed
 DataSet, Labels = ID3Tree.createDataSet()
-result = ID3Tree.classifyID3(myTree, Labels, [1, 10])
+result = ID3Tree.classifyID3(myTree, Labels, [1, 1])
 print "the classify result is ", result
+print "---------------------------------------\n"
+
+# Get the leaf Node
+LeafNodeNum = ID3Tree.getNumLeafs(myTree)
+print "This ID3 Tree leaf node num is ", LeafNodeNum
+print "---------------------------------------\n"
+
+
+# Get the depth of the ID3
+MaxDepth = ID3Tree.getTreeDepth(myTree)
+print "This ID3 tree max depth is ", MaxDepth
+print "---------------------------------------\n"
+
+
+# Plot the tree
+TreePlot.createPlot(myTree)
+print "---------------------------------------\n"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
