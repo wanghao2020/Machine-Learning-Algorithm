@@ -32,4 +32,3 @@ Email: w786058404@163.com
 神经网络主要算法实现并实现具体的实例，实现工具为theano,主要包含以下方面：
 - Logistic Regression 的实现
 - Multilayer Perceptron 的实现
-- 
