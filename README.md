@@ -26,3 +26,10 @@ Email: w786058404@163.com
 - CART的实现
 - 回归树和模型树的实现对比，并图形化显示
 - 个人理解及编程注意事项
+
+
+####Neural Network
+神经网络主要算法实现并实现具体的实例，实现工具为theano,主要包含以下方面：
+- Logistic Regression 的实现
+- Multilayer Perceptron 的实现
+- 
