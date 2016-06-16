@@ -14,6 +14,9 @@ Email: w786058404@163.com
 ####KNN
 - 约会网站的人物分类
 
+####LR(Logistic Regression)
+
+
 ####Naive Bayes
 - 判断评论区留言的正负性
 - 过滤垃圾邮件
@@ -31,3 +34,7 @@ Email: w786058404@163.com
 神经网络主要算法实现并实现具体的实例，实现工具为theano,主要包含以下方面：
 - Logistic Regression 的实现
 - Multilayer Perceptron 的实现
+
+####K-means
+
+####Adaboost
