@@ -15,6 +15,7 @@ Email: w786058404@163.com
 - 约会网站的人物分类
 
 ####LR(Logistic Regression)
+- 预测病马的死亡率
 
 
 ####Naive Bayes
@@ -36,5 +37,7 @@ Email: w786058404@163.com
 - Multilayer Perceptron 的实现
 
 ####K-means
+- 对地图上的点进行聚类
 
 ####Adaboost
+- 利用多个决策树桩预测病马的死亡率
