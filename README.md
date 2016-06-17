@@ -10,10 +10,12 @@ Email: w786058404@163.com
 
 ##Contents
 　　实现机器学习的主要算法, 通过简单的实例进行应用, 没有详细说明介绍算法的原理, 后期会增加更多的算法和实例, 有建议欢迎邮箱沟通, 持续更新.
-###Classification:
 
 ####KNN
 - 约会网站的人物分类
+
+####LR(Logistic Regression)
+
 
 ####Naive Bayes
 - 判断评论区留言的正负性
@@ -32,3 +34,7 @@ Email: w786058404@163.com
 神经网络主要算法实现并实现具体的实例，实现工具为theano,主要包含以下方面：
 - Logistic Regression 的实现
 - Multilayer Perceptron 的实现
+
+####K-means
+
+####Adaboost
