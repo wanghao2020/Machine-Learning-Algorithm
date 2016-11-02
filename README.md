@@ -41,3 +41,8 @@ Email: w786058404@163.com
 
 ####Adaboost
 - 利用多个决策树桩预测病马的死亡率
+
+
+####Matrix Factorization
+矩阵分解相关算法
+- NMF(Nonnegative Matrix Factorization)
