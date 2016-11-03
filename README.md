@@ -45,4 +45,7 @@ Email: w786058404@163.com
 
 ####Matrix Factorization
 矩阵分解相关算法
+- Regularization Matrix Factorization
+- PMF(Probabilistic Matrix Factorization)
 - NMF(Nonnegative Matrix Factorization)
+
