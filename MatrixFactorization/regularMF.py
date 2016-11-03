@@ -11,10 +11,12 @@ def regularMF(R,W,H,K,step=5000,alpha=0.001,lamda=0.02):
                 if R[row][col] > 0 :
                     # calculate loss
                     err_i_j = R[row][col] - np.dot(W[:,row],H[:,col].T)
+                    # update W,H according gradient
                     for i in xrange(K):
                         W[i][row]= W[i][row] - alpha*(-2*err_i_j*H[i][col] + lamda*W[i][row])
                         H[i][col] = H[i][col] - alpha*(-2*err_i_j*W[i][row] + lamda*H[i][col])
-
+        
+        # calculate error in this iter
         error = 0
         for row in xrange(len(R)):
             for col in xrange(len(R[0])):
@@ -60,7 +62,8 @@ if __name__ == '__main__':
 
     print "calculate the matrix factorization ..."
     finalW,finalH = regularMF(data, W, H, K)
-
+    print "*"*50
+    
     print 'final result ...'
     finaldata = np.dot(finalW.T,finalH)
     for i in xrange(len(finaldata)):
